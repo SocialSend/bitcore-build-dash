@@ -17,8 +17,8 @@
  * </ul>`
  * <li> `browser` - generate files needed for browser (browserify)
  * <ul>
- * <li> `browser:uncompressed` - build uncomprssed browser bundle (`bitcore-*.js`)
- * <li> `browser:compressed` - build compressed browser bundle (`bitcore-*.min.js`)
+ * <li> `browser:uncompressed` - build uncomprssed browser bundle (`socialsendcore-*.js`)
+ * <li> `browser:compressed` - build compressed browser bundle (`socialsendcore-*.min.js`)
  * <li> `browser:maketests` - build `tests.js`, needed for testing without karma
  * </ul>`
  * <li> `lint` - run `jshint`
@@ -54,12 +54,12 @@ function startGulp(name, opts) {
 
   opts = opts || {};
   var browser = !opts.skipBrowser;
-  var fullname = name ? 'bitcore-' + name : 'bitcore';
+  var fullname = name ? 'socialsendcore-' + name : 'bitcore';
   var files = ['lib/**/*.js'];
   var tests = ['test/**/*.js'];
   var alljs = files.concat(tests);
 
-  var buildPath = './node_modules/bitcore-build-dash/';
+  var buildPath = './node_modules/socialsendcore-build/';
   var buildModulesPath = buildPath + 'node_modules/';
   var buildBinPath = buildPath + 'node_modules/.bin/';
 
@@ -129,9 +129,9 @@ function startGulp(name, opts) {
     var browserifyCommand;
 
     if (name !== 'lib') {
-      browserifyCommand = browserifyPath + ' --require ./index.js:' + fullname + ' --external bitcore-lib-dash -o ' + fullname + '.js';
+      browserifyCommand = browserifyPath + ' --require ./index.js:' + fullname + ' --external socialsendcore-lib -o ' + fullname + '.js';
     } else {
-      browserifyCommand = browserifyPath + ' --require ./index.js:bitcore-lib-dash -o bitcore-lib-dash.js';
+      browserifyCommand = browserifyPath + ' --require ./index.js:socialsendcore-lib -o socialsendcore-lib.js';
     }
 
     gulp.task('browser:uncompressed', shell.task([
